@@ -13,7 +13,11 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 function slack(res, message) {
-  return res.send(message);
+  if (process.env.SLACK_OUTGOING) {
+    return res.send(JSON.stringify({text: message}));
+  } else {
+    return res.send(message);
+  }
 }
 
 var app = express();
@@ -61,10 +65,11 @@ app.post('/store', function(req, res) {
       if (data.body['refresh_token']) { 
         spotifyApi.setRefreshToken(data.body['refresh_token']);
       }
-      if(req.body.text.indexOf(' - ') === -1) {
-        var query = 'track:' + req.body.text;
-      } else { 
-        var pieces = req.body.text.split(' - ');
+      var text = process.env.SLACK_OUTGOING ? req.body.text.replace(req.body.trigger_word, '') : req.body.text;
+      if(text.indexOf(' - ') === -1) {
+        var query = 'track:' + text;
+      } else {
+        var pieces = text.split(' - ');
         var query = 'artist:' + pieces[0].trim() + ' track:' + pieces[1].trim();
       }
       spotifyApi.searchTracks(query)
