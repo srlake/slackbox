@@ -70,6 +70,10 @@ app.post('/store', function(req, res) {
       if(text.indexOf('listen') !== -1) {
         return res.send('Click to listen: ' + process.env.RADIO_URL);
       }
+      if(text.indexOf('add') === 0) {
+        // chopp off the add command if present
+        text = text.substring(3);
+      }
       if(text.indexOf(' - ') === -1) {
         var query = 'track:' + text;
       } else {
