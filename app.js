@@ -72,7 +72,7 @@ app.post('/store', function(req, res) {
       }
       if(text.indexOf('add') === 0) {
         // chopp off the add command if present
-        text = text.substring(3);
+        text = text.substring(4);
       }
       if(text.indexOf(' - ') === -1) {
         var query = 'track:' + text;
