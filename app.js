@@ -57,6 +57,9 @@ app.post('/store', function(req, res) {
       if (data.body['refresh_token']) { 
         spotifyApi.setRefreshToken(data.body['refresh_token']);
       }
+      if(req.body.text.indexOf('listen') !== -1) {
+        return res.send('Listen here: ' + process.env.RADIO_URL);
+      }
       if(req.body.text.indexOf(' - ') === -1) {
         var query = 'track:' + req.body.text;
       } else { 
