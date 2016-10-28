@@ -1,6 +1,4 @@
-var express       = 
-    
-    uire('express');
+var express       = require('express');
 var bodyParser    = require('body-parser');
 var request       = require('request');
 var dotenv        = require('dotenv');
@@ -53,11 +51,6 @@ app.use('/store', function(req, res, next) {
 });
 
 app.post('/store', function(req, res) {
-  // Two functions: listen or add
-  // If listen, return the stream url
-  if(req.body.text == 'listen') {
-     return res.send('Listen here: ' + process.env.RADIO_URL);
-  }
   spotifyApi.refreshAccessToken()
     .then(function(data) {
       spotifyApi.setAccessToken(data.body['access_token']);
