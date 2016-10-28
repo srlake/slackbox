@@ -1,11 +1,19 @@
 # slackbox
+This is a modified version of this repo adding a "listen" command with a link to open a stream
+
 Spotify playlist collaboration through Slack. Brought to you by the lovely people at [Benchmark](http://benchmark.co.uk).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Simply create a Slash Command, such as `/jukebox`, which accepts a track name (also the artist too for a less fuzzy search) to add to a pre-defined Spotify playlist:
+Simply create a Slash Command, such as `/radio`, which accepts a track name (also the artist too for a less fuzzy search) to add to a pre-defined Spotify playlist:
 
-    /jukebox Bell Biv DeVoe – Poison
+    /radio Bell Biv DeVoe – Poison
+
+    or 
+
+    /radio listen
+
+    which returns a link to a stream defined by an environment variable RADIO_URL
 
 ##Installation
 
@@ -33,6 +41,7 @@ Once you've cloned slackbox or hit the "Deploy with Heroku" button you'll need t
 * `SPOTIFY_USERNAME` - Your Spotify username.
 * `SPOTIFY_PLAYLIST_ID` - Your playlist identifier.
 * `SPOTIFY_REDIRECT_URI` - URI to redirect to once your user has allowed the application's permissions.
+* `RADIO_URL` - URL to a stream to listen to output
 
 ###Authentication
 
