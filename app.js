@@ -71,7 +71,7 @@ app.post('/store', function(req, res) {
         return res.send('Click to listen: ' + process.env.RADIO_URL);
       }
       // Testing
-      return res.send(text.indexOf('add'));
+      return res.send('location ' + text.indexOf('add'));
       if(text.indexOf('add') === 1) {
         // chopp off the add command if present
         text = text.substring(3);
